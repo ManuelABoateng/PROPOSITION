@@ -1,0 +1,187 @@
+<html>
+
+<style>
+.container {
+    text-align: center;
+    margin-top: 20%;
+}
+
+#noBtn {
+    position: absolute; /* Essential for movement */
+    transition: 0.1s;
+}
+
+button + button{
+    margin-left: 15px;
+    display: inline-block;
+}
+
+button {
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(45deg, palevioletred, #be2727);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+body {
+    background-image: url("8312086.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: auto;
+    font-size: 25px;
+    font-family: 'Broadway', sans-serif;
+    color: palevioletred
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-image: url("39.jpg");
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    animation: pop 0.3s ease;
+}
+
+.popup-content h2 {
+    color: #ff4b6e;
+}
+
+.popup-content button {
+    margin-top: 15px;
+    padding: 8px 20px;
+    border: none;
+    background: #ff4b6e;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.popup-content button:hover {
+    background: #e63950;
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+
+</style>
+<body>
+
+<div class="container">
+    
+    <h1>Will you be my Valentine? ❤️</h1>
+    <div class="buttons">
+        <button id="yesBtn" onclick="showLove()">YES😍</button> 
+        <button id="noBtn">NO😔</button>
+    </div>
+    
+    <div class = "popup" id = "lovePopup">
+        <div class = "popup-content">
+            <h2>YAYYY🤭 <br> I LOVE YOU BABY! ❤️</h2>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+    
+</div>
+
+    
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function () {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.transition = "0.3s";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+
+function showLove() {
+    document.getElementById("lovePopup").style.display = "flex";
+
+    // Create floating hearts
+    for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.classList.add("heart");
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+}
+
+function showPopup() {
+    document.getElementById('lovePopup').style.display = 'flex';
+}
+
+function closePopup() {
+    document.getElementById('lovePopup').style.display = 'none';
+}
+
+
+</script>
+</body>
+
+</html>
